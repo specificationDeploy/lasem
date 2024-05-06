@@ -102,7 +102,7 @@ int itex2MML_displaymode = 0;
 
 "\\\\"          itex2MML_rowposn=2; return ROWSEP;
 
-[a-zA-Z]+       {yylval=itex2MML_copy_string(yytext); return MI;}
+[a-zA-Zа-яА-Я]+       {yylval=itex2MML_copy_string(yytext); return MI;}
 
 [0-9]{1,3}(,[0-9]{3,3})*(\.[0-9]+)? |
 [0-9]*[\.][0-9]+                   |
