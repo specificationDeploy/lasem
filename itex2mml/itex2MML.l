@@ -970,9 +970,9 @@ int itex2MML_displaymode = 0;
 
 "\\includegraphics"(\[[^\]]*\])?\{[^}]*\}	;
 
-"\\"[a-zA-Z]+    {yylval=itex2MML_copy_string(yytext+1); return MOP;}
+"\\"[a-zA-Zа-яА-Я]+    {yylval=itex2MML_copy_string(yytext+1); return MOP;}
 
-"\&"[a-zA-Z_][a-zA-Z0-9_]*";" |
+"\&"[a-zA-Zа-яА-Я_][a-zA-Zа-яА-Я0-9_]*";" |
 "\&#"[0-9]+";" |
 "\&#x"[a-fA-F0-9]+";"  {yylval=itex2MML_copy_string(yytext); return MI;}
 
@@ -983,7 +983,7 @@ int itex2MML_displaymode = 0;
 .              {return UNKNOWNCHAR;}
 }
 
-<ATTRIBUTELIST>"{"[ \t\n\r #a-zA-Z0-9.\-]*"}"  {BEGIN(MATH); yylval=itex2MML_copy_string(yytext); if (yylval != itex2MML_empty_string) { yylval[0]='"'; yylval[yyleng-1]='"'; } return ATTRLIST;}
+<ATTRIBUTELIST>"{"[ \t\n\r #a-zA-Zа-яА-Я0-9.\-]*"}"  {BEGIN(MATH); yylval=itex2MML_copy_string(yytext); if (yylval != itex2MML_empty_string) { yylval[0]='"'; yylval[yyleng-1]='"'; } return ATTRLIST;}
 
 <OPTARG>{
 "[" {if(itex2MML_optarg_ind < itex2MML_optarg_depth - 1 && itex2MML_inoptarg[itex2MML_optarg_ind] !=1 ){itex2MML_optarg_ind++; itex2MML_inoptarg[itex2MML_optarg_ind]=1;}; BEGIN(MATH); return OPTARGOPEN;}
@@ -1055,7 +1055,7 @@ int itex2MML_displaymode = 0;
 <ROMAN>{
 "\{"  {return ST;}
 "\}"  {BEGIN(MATH); return END;}
-[a-zA-Z]   {yylval=itex2MML_copy_string(yytext); return RMCHAR;}
+[a-zA-Zа-яА-Я]   {yylval=itex2MML_copy_string(yytext); return RMCHAR;}
 [\t\n\r ]+       ;
 .           {return yytext[0];}
 }
@@ -1063,8 +1063,8 @@ int itex2MML_displaymode = 0;
 <BBOLD>{
 "\{"  {return ST;}
 "\}"  {BEGIN(MATH); return END;}
-[a-z] {yylval=itex2MML_copy_string(yytext); return BBLOWERCHAR;}
-[A-Z]   {yylval=itex2MML_copy_string(yytext); return BBUPPERCHAR;}
+[a-zа-я] {yylval=itex2MML_copy_string(yytext); return BBLOWERCHAR;}
+[A-ZА-Я]   {yylval=itex2MML_copy_string(yytext); return BBUPPERCHAR;}
 [0-9]   {yylval=itex2MML_copy_string(yytext); return BBDIGIT;}
 [\t\n\r ]+       ;
 .           {return yytext[0];}
@@ -1073,7 +1073,7 @@ int itex2MML_displaymode = 0;
 <CALLIGRAPHIC>{
 "\{"  {return ST;}
 "\}"  {BEGIN(MATH); return END;}
-[a-zA-Z]   {yylval=itex2MML_copy_string(yytext); return CALCHAR;}
+[a-zA-Zа-яА-Я]   {yylval=itex2MML_copy_string(yytext); return CALCHAR;}
 [\t\n\r ]+       ;
 .           {return yytext[0];}
 }
@@ -1081,7 +1081,7 @@ int itex2MML_displaymode = 0;
 <SCRIPT>{
 "\{"  {return ST;}
 "\}"  {BEGIN(MATH); return END;}
-[a-zA-Z]   {yylval=itex2MML_copy_string(yytext); return CALCHAR;}
+[a-zA-Zа-яА-Я]   {yylval=itex2MML_copy_string(yytext); return CALCHAR;}
 [\t\n\r ]+       ;
 .           {return yytext[0];}
 }
@@ -1089,7 +1089,7 @@ int itex2MML_displaymode = 0;
 <FRAKTUR>{
 "\{"  {return ST;}
 "\}"  {BEGIN(MATH); return END;}
-[a-zA-Z]   {yylval=itex2MML_copy_string(yytext); return FRAKCHAR;}
+[a-zA-Zа-яА-Я]   {yylval=itex2MML_copy_string(yytext); return FRAKCHAR;}
 [\t\n\r ]+       ;
 .           {return yytext[0];}
 }
